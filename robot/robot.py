@@ -94,6 +94,9 @@ class Panthera(magicbot.MagicRobot):
         # Drivetrain
         self.train = wpilib.drive.DifferentialDrive(self.lf_motor, self.rf_motor)
 
+        self.btn_sarah = ButtonDebouncer(self.joystick, 2)
+        self.sarah = False
+
         # Winch
         self.winch_motors = wpilib.SpeedControllerGroup(wpilib.Victor(7), wpilib.Victor(8))
 
@@ -178,6 +181,9 @@ class Panthera(magicbot.MagicRobot):
         self.drive.move(-self.joystick_left.getY(),
                         self.joystick_right.getX(),
                         self.btn_fine_movement.get())
+
+        if self.btn_sarah:
+            self.sarah = not self.sarah
 
         if self.stabilize:
             if abs(self.navx.getPitch()) > self.stabilizer_threshold:

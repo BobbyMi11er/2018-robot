@@ -3,6 +3,7 @@ import wpilib.drive
 from magicbot import will_reset_to
 from magicbot import tunable
 
+SARAH_MULTIPLIER = 0.5
 
 class Drive:
     """
@@ -32,14 +33,18 @@ class Drive:
         """
         self.train.setDeadband(0.1)
 
-    def move(self, y: float, rot: float, fine_movement: bool = False):
+    def move(self, y: float, rot: float, fine_movement: bool = False, sarah = False):
         """
         Move robot.
 
         :param y: Speed of motion in the y direction. [-1..1]
         :param rot: Speed of rotation. [-1..1]
         :param fine_movement: Decrease speeds for precise motion.
+        :param sarah: Is Sarah driving?
         """
+        if sarah:
+            y *= SARAH_MULTIPLIER
+            rotation *= SARAH_MULTIPLIER
         self.y = y
         self.rot = rot
         self.fine_movement = fine_movement

@@ -5,6 +5,7 @@ from magicbot import tunable
 
 SARAH_MULTIPLIER = 0.5
 
+
 class Drive:
     """
     Handle robot drivetrain.
@@ -33,7 +34,7 @@ class Drive:
         """
         self.train.setDeadband(0.1)
 
-    def move(self, y: float, rot: float, fine_movement: bool = False, sarah = False):
+    def move(self, y: float, rot: float, fine_movement: bool = False, sarah=False):
         """
         Move robot.
 
